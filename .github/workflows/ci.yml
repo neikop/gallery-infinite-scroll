@@ -1,0 +1,15 @@
+name: Dockerize frontend
+
+on: 
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: |
+          docker login -u vietanhs0817 -p "${{ secrets.DOCKER_ACCESS_TOKEN }}"
+          docker build . -t vietanhs0817/kiennk
+          docker push vietanhs0817/kiennk
+          
