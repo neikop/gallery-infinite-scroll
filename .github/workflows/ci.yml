@@ -23,6 +23,7 @@ jobs:
         run: |
            mkdir -p ~/.ssh
            echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+           chmod 600 ~/.ssh/id_rsa
       - name: SSH and deploy
         run: |
            ssh  -o "StrictHostKeyChecking no" -i ~/.ssh/id_rsa "${{ secrets.SERVER }}" "cd ~/kiennk && make deploy"
