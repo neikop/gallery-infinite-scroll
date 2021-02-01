@@ -10,12 +10,12 @@
     "build": "webpack --mode=production"
   },
   "dependencies": {
-    "@auth0/auth0-react": "^1.2.0",
     "axios": "^0.21.1",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
     "react-router-dom": "^5.2.0",
-    "semantic-ui-react": "^2.0.3"
+    "semantic-ui-react": "^2.0.3",
+    "teko-oauth2": "^1.3.4"
   },
   "devDependencies": {
     "@babel/core": "^7.11.0",

@@ -1,15 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Auth0Provider } from '@auth0/auth0-react';
+import App from 'App';
+import TekoID from 'teko-oauth2';
 
-import App from './App';
-
-ReactDOM.render(
-  <Auth0Provider
-    domain="dev-l360v0k5.auth0.com"
-    clientId="IJQzNy6Mob4Z9OixqNtr11KdlXchShpZ"
-    redirectUri={window.location.origin}>
-    <App />
-  </Auth0Provider>,
-  document.getElementById('root'),
-);
+TekoID.init({
+  clientId: '830736553a9e4e8fa900aa83dbd20e8e',
+  scopes: ['openid', 'profile'],
+  oauthDomain: 'https://oauth.test-1.tekoapis.net',
+}).then(() => {
+  ReactDOM.render(<App />, document.getElementById('root'));
+});

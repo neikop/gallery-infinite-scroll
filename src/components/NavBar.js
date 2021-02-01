@@ -1,14 +1,13 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { useAuth0 } from '@auth0/auth0-react';
 import { privateRoute } from 'router';
+import TekoID from 'teko-oauth2';
 
 const NavBar = () => {
   const { pathname } = useLocation();
-  const { logout } = useAuth0();
 
   const handleClickLogout = () => {
-    logout({ returnTo: window.location.origin });
+    TekoID.user.logout();
   };
 
   const NavBarItem = ({ path, name, icon: type }) => {

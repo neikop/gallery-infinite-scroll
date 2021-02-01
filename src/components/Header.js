@@ -1,19 +1,17 @@
 import React from 'react';
-import { useAuth0 } from '@auth0/auth0-react';
 import { Button, Image } from 'semantic-ui-react';
+import TekoID from 'teko-oauth2';
 
 const Header = () => {
-  const { isAuthenticated, loginWithRedirect, user } = useAuth0();
-
   const handleClickLogin = () => {
-    loginWithRedirect();
+    TekoID.user.login();
   };
 
   return (
     <div className="App-Header-container">
-      {isAuthenticated ? (
+      {TekoID.user.isLoggedIn() ? (
         <>
-          <Image avatar src={user.picture} />
+          <Image avatar src={TekoID.user.getUserInfo().picture} />
         </>
       ) : (
         <>

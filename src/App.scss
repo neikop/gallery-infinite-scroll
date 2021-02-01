@@ -1,11 +1,3 @@
-.App {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-}
-
 .App-Header-container {
   display: flex;
   align-items: center;
@@ -13,11 +5,18 @@
   padding: 4px 16px;
   height: 56px;
   border-bottom: 1px solid #0002;
+
+  background-color: #fff;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  z-index: 1;
 }
 
 .App-container {
   position: relative;
-  height: calc(100vh - 56px);
+  height: 100vh;
 
   .App-content {
     padding: 12px;
@@ -25,7 +24,8 @@
 
   .NavBar {
     display: flex;
-    position: absolute;
+    position: fixed;
+    z-index: 1;
 
     .NavBar-item {
       display: flex;
@@ -36,9 +36,10 @@
       cursor: pointer;
       line-height: initial;
       color: #4183c4;
+      background-color: #fff;
     }
     .NavBar-item:hover {
-      background-color: #0001;
+      background-color: #ececec;
     }
     .NavBar-item.active {
       background-color: aliceblue;
@@ -48,11 +49,12 @@
 
 .App-container.Desktop {
   padding-left: 240px;
+  padding-top: 56px;
 
   .NavBar {
     flex-direction: column;
+    top: 56px;
     left: 0px;
-    top: 0px;
     bottom: 0px;
     width: 240px;
 
@@ -81,17 +83,22 @@
 }
 
 .App-container.Android {
-  padding-top: 44px;
+  padding-top: 100px;
 
   .NavBar {
-    top: 0px;
+    top: 56px;
     left: 0px;
     right: 0px;
     height: 44px;
+
+    .NavBar-item {
+      border-bottom: 1px solid #0002;
+    }
   }
 }
 
 .App-container.iOS {
+  padding-top: 56px;
   padding-bottom: 44px;
 
   .NavBar {
@@ -99,5 +106,9 @@
     left: 0px;
     right: 0px;
     height: 44px;
+
+    .NavBar-item {
+      border-top: 1px solid #0002;
+    }
   }
 }
