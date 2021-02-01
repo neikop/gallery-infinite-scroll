@@ -8,8 +8,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: |
-          docker login -u vietanhs0817 -p "${{ secrets.DOCKER_ACCESS_TOKEN }}"
-          docker build . -t vietanhs0817/kiennk
-          docker push vietanhs0817/kiennk
+      - name: Docker login 
+        run: docker login -u vietanhs0817 -p "${{ secrets.DOCKER_ACCESS_TOKEN }}"
+      - name: Docker build
+        run: docker build . -t vietanhs0817/kiennk
+      - name: Docker push
+        run: docker push vietanhs0817/kiennk
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Prepare SSH
+        run: |
+           mkdir -p ~/.ssh
+           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+      - name: SSH and deploy
+        run: |
+           ssh  -o "StrictHostKeyChecking no" -i ~/.ssh/id_rsa "${{ secrets.SERVER }}" "cd ~/kiennk && make deploy"
           
