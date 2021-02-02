@@ -1,17 +1,11 @@
 import React from 'react';
-import { Dimmer, Feed, Icon, Image, Loader } from 'semantic-ui-react';
-import axios from 'axios';
-
-const key = '20105758-5508685e470f1fe6a4c06f630';
-
-const instance = axios.create({
-  baseURL: 'https://pixabay.com',
-});
+import { Feed, Icon, Image, Placeholder } from 'semantic-ui-react';
+import { imageService } from 'services/image';
 
 const Gallery = () => {
   const [images, setImages] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(false);
-  const offset = React.useRef(1);
+  const offset = React.useRef(Math.floor(Math.random() * 10) + 1);
   const isStop = React.useRef(false);
   const isLast = React.useRef(false);
 
@@ -22,18 +16,15 @@ const Gallery = () => {
     if (isLast.current || isStop.current) return;
     setIsLoading(true);
     isStop.current = true;
-    instance
-      .get(`/api`, {
-        params: { key, page: offset.current, per_page: 25 },
-      })
-      .then((response) => {
-        const { hits } = response.data;
+    imageService
+      .loadImages({ page: offset.current, per_page: 25 })
+      .then((data) => {
+        const { hits } = data;
         setImages((current) => {
           const next = current.concat(hits).slice(0, 105);
           isLast.current = next.length >= 105;
           return next;
         });
-
         offset.current = offset.current + 1;
       })
       .catch(console.warn)
@@ -55,7 +46,7 @@ const Gallery = () => {
         {images.map((image) => (
           <Feed.Event key={image.id}>
             <Feed.Label>
-              <Image size="small" src={image.userImageURL} />
+              <Image size="small" src={image.userImageURL || '//react.semantic-ui.com/logo.png'} />
             </Feed.Label>
             <Feed.Content>
               <Feed.Summary>
@@ -74,9 +65,18 @@ const Gallery = () => {
           </Feed.Event>
         ))}
       </Feed>
-      <div style={{ height: 60, width: 240, position: 'relative' }}>
-        <Loader active={isLoading} />
-      </div>
+      {isLoading && (
+        <Placeholder>
+          <Placeholder.Header image>
+            <Placeholder.Line />
+            <Placeholder.Line />
+          </Placeholder.Header>
+          <Placeholder.Paragraph>
+            <Placeholder.Image />
+            <Placeholder.Line length="short" />
+          </Placeholder.Paragraph>
+        </Placeholder>
+      )}
     </div>
   );
 };

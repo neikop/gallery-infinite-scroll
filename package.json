@@ -6,7 +6,7 @@
   "author": "",
   "license": "ISC",
   "scripts": {
-    "start": "webpack-dev-server --mode=development --open --hot",
+    "start": "webpack-dev-server --mode=development --open=msedge --hot",
     "build": "webpack --mode=production"
   },
   "dependencies": {
