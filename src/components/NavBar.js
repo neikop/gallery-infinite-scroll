@@ -12,7 +12,12 @@ const NavBar = () => {
 
   const NavBarItem = ({ path, name, icon: type }) => {
     return (
-      <Link className={`NavBar-item ${pathname === path ? 'active' : ''}`} to={path}>
+      <Link
+        className={`NavBar-item ${pathname === path ? 'active' : ''}`}
+        to={path}
+        onClick={() => {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }}>
         <Icon name={type} />
         <span className="label">{name}</span>
       </Link>
