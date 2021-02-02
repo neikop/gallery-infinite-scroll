@@ -42,11 +42,15 @@ $ yarn build
 
 ### Credit
 
-Created by [@neikop][1]
+Created by [@neikop][1], and thanks to [@vietanhduong][2] for support deployment server.
 
-Integrated authentication and authorization by [Teko Identity OAuth2][2]
+Using components, icons from [Semantic UI React][3].
+
+Integrated authentication and authorization by [Teko Identity OAuth2][4].
 
 Automated workflow by <a href="https://github.com/features/actions"><img height="14" width="16" src="https://github.githubassets.com/favicons/favicon.svg" /> GitHub Actions</a>
 
 [1]: https://github.com/neikop
-[2]: https://www.npmjs.com/package/teko-oauth2
+[2]: https://github.com/vietanhduong
+[3]: https://github.com/Semantic-Org/Semantic-UI-React
+[4]: https://www.npmjs.com/package/teko-oauth2
