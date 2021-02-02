@@ -4,8 +4,8 @@ import App from 'App';
 import 'teko-oauth2';
 
 TekoID.init({
-  clientId: '830736553a9e4e8fa900aa83dbd20e8e',
-  oauthDomain: 'https://oauth.test-1.tekoapis.net',
+  clientId: 'ac644043373642639c78b6ce4a921662',
+  oauthDomain: 'https://oauth.teko.vn',
   scopes: ['openid', 'profile'],
 }).then(() => {
   ReactDOM.render(<App />, document.getElementById('root'));
